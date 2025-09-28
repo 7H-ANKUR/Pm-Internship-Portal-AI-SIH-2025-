@@ -1,0 +1,42 @@
+# Development files
+.env*
+.vscode/
+.idea/
+*.log
+*.pyc
+__pycache__/
+
+# Backend development
+backend/venv/
+backend/.env*
+backend/*.db
+backend/*.sqlite3
+backend/uploads/
+backend/temp_*
+
+# Build artifacts
+dist/
+node_modules/
+
+# Testing
+test_*
+tests/
+
+# Documentation (optional - remove if you want docs deployed)
+*.md
+!README.md
+
+# Backup and config
+backup-config/
+
+# Platform specific
+Procfile
+render*.yaml
+replit*
+RENDER_*
+DEPLOYMENT_*
+GITHUB_SETUP*
+SUPABASE_SETUP*
+
+# Database migrations (usually not needed in serverless)
+backend/migrations/
