@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMIP Portal - Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        h1 { color: #fff; margin-bottom: 20px; }
+        .status { background: #10b981; padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .test-btn { 
+            background: #3b82f6; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin: 5px;
+        }
+        .test-btn:hover { background: #2563eb; }
+        #apiResult { 
+            background: rgba(0,0,0,0.2); 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 5px; 
+            text-align: left;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Prime Minister Internship Portal</h1>
+        <div class="status">✅ Vercel Deployment Successful!</div>
+        
+        <h2>Deployment Status</h2>
+        <p>✅ Frontend: Static files serving correctly</p>
+        <p>✅ Backend: API endpoints configured</p>
+        <p>✅ Routing: SPA routing enabled</p>
+        
+        <h3>Test API Endpoints</h3>
+        <button class="test-btn" onclick="testAPI('/api')">Test API Root</button>
+        <button class="test-btn" onclick="testAPI('/api/health')">Test Health Check</button>
+        <button class="test-btn" onclick="testAPI('/api/test')">Test Endpoint</button>
+        
+        <div id="apiResult"></div>
+        
+        <h3>Next Steps</h3>
+        <p>1. ✅ Vercel deployment is working</p>
+        <p>2. 🔄 React app should load (check browser console for errors)</p>
+        <p>3. 🔧 Configure environment variables if needed</p>
+        
+        <div style="margin-top: 30px;">
+            <a href="/dist/index.html" style="color: #60a5fa; text-decoration: none;">
+                🎯 Go to React App (Manual Link)
+            </a>
+        </div>
+        
+        <script>
+            console.log('PMIP Portal - Vercel Test Page Loaded');
+            
+            async function testAPI(endpoint) {
+                const resultDiv = document.getElementById('apiResult');
+                resultDiv.innerHTML = `Testing ${endpoint}...`;
+                
+                try {
+                    const response = await fetch(endpoint);
+                    const data = await response.json();
+                    resultDiv.innerHTML = `
+                        <strong>${endpoint}</strong><br>
+                        Status: ${response.status}<br>
+                        Response: ${JSON.stringify(data, null, 2)}
+                    `;
+                } catch (error) {
+                    resultDiv.innerHTML = `
+                        <strong>${endpoint}</strong><br>
+                        Error: ${error.message}
+                    `;
+                }
+            }
+            
+            // Auto-test API on load
+            setTimeout(() => testAPI('/api'), 1000);
+        </script>
+    </div>
+</body>
+</html>
